@@ -1,0 +1,57 @@
+<?php
+
+use yii\helpers\Url;
+
+use yii\bootstrap5\Html;
+/** @var \app\models\domain\entity\Esterilizacion $model */
+/** @var array $productos */
+
+
+?>
+
+<h1>Esterilizacion</h1>
+
+<table class="table">
+    <tbody>
+        <tr>
+            <td> ID </td>
+            <td> <?= $model->id ?> </td>
+        </tr>
+        <tr>
+            <td> Nombre </td>
+            <td> <?= $model->tatuaje ?> </td>
+        </tr>
+
+    </tbody>
+</table>
+
+<div>
+    <?php $id_este = $model->id; ?>
+
+    <a href="index.php?r=esterilizacion/xx&id=<?=$id_este ?>" class="btn btn-primary">Agrega</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Producto
+            </th>
+            <th>
+                Cantidad
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($productos as $row): ?>
+        <tr>
+            <td>
+                <?= $row['nombre'] ?>
+            </td>
+            <td>
+            <?= $row['cantidad'] ?>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>

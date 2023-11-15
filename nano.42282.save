@@ -1,0 +1,12 @@
+//Base de datos para Zoonosis Tarija
+
+CREATE TABLE acompanante_propietario (
+    id_dueno INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    celular INT(20),
+    direccion VARCHAR(50),
+    tipo_dueno INT NOT NULL,
+    nombre VARCHAR(50) NOT NULL,
+    apellidos VARCHAR(50) NOT NULL,
+    telefono INT(15)
+);
+
