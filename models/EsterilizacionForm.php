@@ -14,6 +14,7 @@ class EsterilizacionForm extends Model
     public $id_dueno;
     public $id_animal;
     
+    public $id_stein;
     public $id_inventario;
     public $nombre;
     public $cantidad;
@@ -38,6 +39,8 @@ class EsterilizacionForm extends Model
         $esterilizacion->load($this->attributes);        
         return $esterilizacion->create() > 0;
     }
+
+
     
     public function update() : bool{
         $esterilizacion = Esterilizacion::getById($this->id);

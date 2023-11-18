@@ -14,7 +14,9 @@ class Esterilizacion{
     public string $id_animal='';
     public string $nombre='';
 
+    public string $id_estein='';
     public string $cantidad='';
+    public string $id_inventario='';
 
     
     
@@ -44,6 +46,16 @@ class Esterilizacion{
 
     }
 
+
+    public function getRegistarProductos(): array
+    { 
+
+    return DAOFactory::getEsterilizacionDAO()->getProductosEsterilizacion($this->id, $this->id_inventario);
+
+    }
+
+    
+
     public static function getById(string $id): static 
     {
         $data = DAOFactory::getEsterilizacionDAO()->getById($id);
@@ -52,6 +64,13 @@ class Esterilizacion{
         return $model;
     }  
     
+    public static function getByIdProducto(string $id): static 
+    {
+        $data = DAOFactory::getEsterilizacionDAO()->getByIdProducto($id);
+        $model = new Esterilizacion();
+        $model->load($data);
+        return $model;
+    } 
 
     
     
@@ -61,8 +80,11 @@ class Esterilizacion{
 
     public function create() : int {
         return DAOFactory::getEsterilizacionDAO()->create($this);
-    }    
-
+    }   
+    public function createproducto($id_inventario, $cantidad) : int {
+        return DAOFactory::getEsterilizacionDAO()->createproducto($this, $id_inventario, $cantidad);
+    }
+    
     public function update() : int {
         return DAOFactory::getEsterilizacionDAO()->update($this);
     }
@@ -70,6 +92,10 @@ class Esterilizacion{
     public function delete() : int {
         return DAOFactory::getEsterilizacionDAO()->delete($this);
     }  
+    public function deleteproducto() : int {
+        return DAOFactory::getEsterilizacionDAO()->deleteproducto($this);
+    }  
+    
 
     
 }

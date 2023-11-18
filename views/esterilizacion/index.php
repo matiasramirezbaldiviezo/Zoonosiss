@@ -45,8 +45,6 @@ use yii\bootstrap5\Html;
                 
             <td>
             <a href="index.php?r=esterilizacion/estein&id=<?= $row['id'] ?>"  ><i class="fa-solid fa-business-time"></i></a>
-            <a href="index.php?r=esterilizacion/estein&id=<?= $row['id'] ?>"  ><i class="fa-solid fa-business-time"></i></a>
-
         </td>
 
         

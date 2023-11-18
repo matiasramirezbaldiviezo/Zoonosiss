@@ -85,7 +85,22 @@ class EsterilizacionController extends Controller
         $esterilizacion = Esterilizacion::getById($id);
         $esterilizacion->delete();
         return $this->redirect(['index']);
+        
     }
+
+    public function actionDeleteproducto($id_estein)
+    {
+        
+        $esterilizacion = Esterilizacion::getByIdProducto($id_estein);
+        $id = $esterilizacion->id;
+        $esterilizacion->deleteproducto($id_estein);
+        Yii::$app->session->addFlash('success', 'Producto eliminado de  la Esterilizacion');
+        return $this->redirect(['index']);
+    }
+
+    
+
+
 
     public function actionEstein($id)
     {
@@ -113,31 +128,15 @@ class EsterilizacionController extends Controller
 
         
     }
-
-    public function actionGuardararticulo($id)
+    public function actionGuardararticulo($id, $id_inventario)
     {
         $esterilizacion = Esterilizacion::getById($id);
-        $form = new EsterilizacionForm();
-        $form->id = $esterilizacion->id;
-        $form->nombre = $esterilizacion->nombre;
-        $form->cantidad = $esterilizacion->cantidad;
-
-        if (Yii::$app->request->isPost) {
-            if (
-                $form->load(Yii::$app->request->post())
-                && $form->validate()
-                && $form->update()   
-            )
-        
-            {
-                Yii::$app->session->addFlash('success', 'Esterilizacion actualizada');
-                return $this->redirect(['index']);
-            }
-        }
-        
-    }
+        $cantidad = Yii::$app->request->post('cantidad');
 
     
-
-
+        $esterilizacion->createproducto($id_inventario, $cantidad);
+        Yii::$app->session->addFlash('success', 'Producto añadido a Esterilizacion');
+        return $this->redirect(['index']);
+        
+    }
 }

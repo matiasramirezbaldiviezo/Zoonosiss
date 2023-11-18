@@ -1,6 +1,6 @@
 <?php
 
-use yii\helpers\Url;
+use yii\helpers\Html;
 
 /** @var \app\models\domain\entity\Esterilizacion $model */
 /** @var array $productoseste */
@@ -20,35 +20,28 @@ use yii\helpers\Url;
                 Producto
             </th>
             <th>
-                Cantidad usada
-            </th>
-            <th>
-                Accion
+                Cantidad   /    Guardar 
             </th>
         </tr>
     </thead>
     <tbody>
-        <?php foreach($productoseste as $row): ?>
-        <tr>
-            <td>
-                <?= $row['id'] ?>
-            </td>
-            <td>
-                <?= $row['nombre'] ?>
-            </td>
-            <td>
-                <input type="text" name="cantidad" placeholder="Ingrese cantidad">
-        </td>
-
-        
-            
-            
+        <?php foreach ($productoseste as $row): ?>
+            <tr>
                 <td>
-            <a href="<?= Url::to(['esterilizacion/guardararticulo', 'id' => $id_esterilizacion, 'producto_id' => $row['id']]) ?>"  ><i class="fa-solid fa-vial"></i></a>
-                
-        </td>
-            
-        </tr>
-    <?php endforeach; ?>
+                    <?= $row['id'] ?>
+                </td>
+                <td>
+                    <?= $row['nombre'] ?>
+                </td>
+                <td>
+                    <?php
+                    echo Html::beginForm(['esterilizacion/guardararticulo', 'id' => $id_esterilizacion, 'id_inventario' => $row['id']], 'post', ['class' => 'form-inline']);
+                    echo Html::textInput('cantidad', null, ['placeholder' => 'Ingrese la cantidad', 'class' => 'form-control']);
+                    echo Html::submitButton('<i class="fa-solid fa-vial"></i>', ['class' => 'btn btn-link']);
+                    echo Html::endForm();
+                    ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
     </tbody>
 </table>

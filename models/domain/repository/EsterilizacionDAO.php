@@ -29,10 +29,27 @@ class EsterilizacionDAO{
         ");
 
         $cmd->bindValue(':id', $id, PDO::PARAM_INT);
+        
 
-        return $cmd->queryOne();
-
+        return  $cmd->queryOne();
     }
+
+    public function getByIdProducto(string $id_estein): array
+    {
+        $cmd = Yii::$app->db->createCommand("
+            SELECT *
+            FROM estein
+            WHERE id_estein = :id_estein
+        ");
+
+        $cmd->bindValue(':id_estein', $id_estein, PDO::PARAM_INT);
+
+
+
+        
+        return  $cmd->queryOne();
+    }
+
 
     public function getProductosByEsterilizacion(string $esterilizacionId): array
     {
@@ -64,24 +81,24 @@ class EsterilizacionDAO{
 
     }
 
-    public function createproducto(Esterilizacion $esterilizacion) : int
+
+    public function createproducto(Esterilizacion $esterilizacion, $id_inventario, $cantidad) : int 
     {
         $cmd = Yii::$app->db->createCommand("
-            INSERT INTO estein (id_esterilizaciones,id_inventario,cantidad) 
-            VALUES(:id_esterilizacion, :id, :cantidad);
+            INSERT INTO estein (id_esterilizaciones, id_inventario, cantidad) 
+            VALUES (:id, :id_inventario, :cantidad);
         ");
-
-
 
         $cmd->bindValues([
             ':id' => $esterilizacion->id,
-            ':cantidad' => $esterilizacion->cantidad,
-
+            ':id_inventario' => $id_inventario,
+            ':cantidad' => $cantidad,
         ]);
-        
 
-        return $cmd->execute();
+    return $cmd->execute();
     }
+
+
 
     //Pendiente para preguntar
     public function create(Esterilizacion $esterilizacion) : int
@@ -146,7 +163,25 @@ class EsterilizacionDAO{
         return $cmd->execute();
     }
 
-   
+    public function deleteproducto(Esterilizacion $esterilizacion) : int
+    {
+        
+        $cmd = Yii::$app->db->createCommand("
+            DELETE FROM estein
+            WHERE id_estein = :id_estein            
+        ");
+
+        $cmd->bindValues([
+            ':id_estein' => $esterilizacion->id_estein,
+        ]);
+
+        
+        return $cmd->execute();
+    }
+
+
+    
+    
 
     
 
