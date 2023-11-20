@@ -55,7 +55,7 @@ use yii\bootstrap5\Html;
             <?= $row['cantidad'] ?>
             </td>
             <td>
-            <?= Html::a('<i class="fa-solid fa-trash-can"></i>', ['esterilizacion/deleteproducto', 'id_estein' => $row['id_estein']], ['data-confirm' => 'Desea eliminar el producto de la esterilizacion?']) ?>
+            <?= Html::a('<i class="fa-solid fa-trash-can"></i>', ['esterilizacion/deleteproducto', 'id_estein' => $row['id_estein'],'id'=>$id_este], ['data-confirm' => 'Desea eliminar el producto de la esterilizacion?']) ?>
 
             
             </td>

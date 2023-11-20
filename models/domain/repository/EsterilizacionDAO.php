@@ -71,7 +71,7 @@ class EsterilizacionDAO{
     public function getProductosEsterilizacion(string $productoesterilizacionId): array
     {
         $cmd = Yii::$app->db->createCommand("
-        SELECT id,nombre
+        SELECT id,nombre,cantidad
         FROM inventario
         ORDER BY id
         ");

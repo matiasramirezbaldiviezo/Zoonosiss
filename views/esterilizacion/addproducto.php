@@ -20,6 +20,9 @@ use yii\helpers\Html;
                 Producto
             </th>
             <th>
+                Cantidad en mi inventario 
+            </th>
+            <th>
                 Cantidad   /    Guardar 
             </th>
         </tr>
@@ -32,6 +35,9 @@ use yii\helpers\Html;
                 </td>
                 <td>
                     <?= $row['nombre'] ?>
+                </td>
+                <td>
+                    <?= $row['cantidad'] ?>
                 </td>
                 <td>
                     <?php
