@@ -18,7 +18,7 @@ class EsterilizacionForm extends Model
     public $id_inventario;
     public $nombre;
     public $cantidad;
-
+    
     public function rules()
     {
         return [

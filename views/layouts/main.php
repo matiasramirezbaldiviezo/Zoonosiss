@@ -41,29 +41,14 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         'options' => ['class' => 'navbar-nav'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'Productos', 'url' => ['/producto/index']],
+            ['label' => 'Animales', 'url' => ['/animal/index']],
+            ['label' => 'Dueno', 'url' => ['/propietario/index']],
             ['label' => 'Esterilizacion', 'url' => ['/esterilizacion/index']],
             ['label' => 'Lista de animales', 'url' => ['/animal/index']],            
-            ['label' => 'Usuarios', 'url' => ['/usuario/index']],
             ['label' => 'Inventario', 'url' => ['/inventario/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'otro menu', 'items' => [
-                ['label' => 'About', 'url' => ['/site/about']],
-                ['label' => 'About', 'url' => ['/site/about']],
-                ['label' => 'About', 'url' => ['/site/about']],
-            ]],
+            ['label' => 'Rabia', 'url' => ['/rabia/index']],
             
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest
-                ? ['label' => 'Login', 'url' => ['/site/login']]
-                : '<li class="nav-item">'
-                    . Html::beginForm(['/site/logout'])
-                    . Html::submitButton(
-                        'Logout (' . Yii::$app->user->identity->username . ')',
-                        ['class' => 'nav-link btn btn-link logout']
-                    )
-                    . Html::endForm()
-                    . '</li>'
+            
         ]
     ]);
     NavBar::end();

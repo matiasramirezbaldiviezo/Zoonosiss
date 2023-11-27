@@ -42,6 +42,20 @@ class DAOFactory {
         return new self::$inventarioDAO();
     }
 
+    //Rabia
+    public static $rabiaDAO = RabiaDAO::class;
+    
+    public static function getRabiaDAO() : RabiaDAO{
+        return new self::$rabiaDAO;
+    }
+
+    //Propietario
+    public static $propietarioDAO = PropietarioDAO::class;
+    
+    public static function getPropietarioDAO() : PropietarioDAO{
+        return new self::$propietarioDAO;
+    }
+
 
 
 
