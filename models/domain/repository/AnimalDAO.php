@@ -34,8 +34,11 @@ class AnimalDAO
     public function create(Animal $animal): int
     {
         $cmd = Yii::$app->db->createCommand("
-            INSERT INTO paciente_animal (nombre_animal, genero, zona_direccion, tipo_dueno, edad, especie, imagen, json) 
-            VALUES (:nombre_animal, :genero, :zona_direccion, :tipo_dueno, :edad, :especie, :imagen , :json);
+            INSERT INTO paciente_animal (nombre_animal, genero, zona_direccion, 
+                                        tipo_dueno, edad, especie, imagen, json) 
+            VALUES (:nombre_animal, :genero, :zona_direccion,
+            :tipo_dueno, :edad, :especie,
+            :imagen , :json);
         ");
 
         $cmd->bindValues([
@@ -79,7 +82,7 @@ class AnimalDAO
             $cmd->bindValue(':json', $animal->json);
 
             return $cmd->execute();
-         
+    
     }
 
     public function delete(Animal $animal): int

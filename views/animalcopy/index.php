@@ -37,6 +37,7 @@ $this->registerJs($script);
         <th>Genero</th>
         <th>Zona/Direccion</th>
         <th>Especie</th>
+        <th>Fotografia</th>
         <th></th>
     </thead>
     <tbody id="myTable">
@@ -53,8 +54,12 @@ $this->registerJs($script);
                     <?= Html::a('<i class="fa-solid fa-trash-can"></i>', ['animal/delete', 'id_animal' => $row['id_animal']], ['data-confirm' => '¿Desea eliminar el registro?']) ?>
                 </td>
 
-            
-                
+                <td>
+                <?= Html::img("@web/img/{$model->imagen}",
+                ['class' => 'img-fluid',
+                'alt' => 'Imagen 1',
+                'style' => 'width: 100px; height: 100px;']) ?>
+            </td>
             </tr>
         <?php endforeach ?>
     </tbody>

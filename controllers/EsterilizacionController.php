@@ -37,7 +37,6 @@ class EsterilizacionController extends Controller
                 $form->load(Yii::$app->request->post())
                 && $form->validate()
                 && $form->create()
-
             ) {
                 Yii::$app->session->addFlash('success', 'Esterilizacion guardada');
                 return $this->redirect(['index']);
@@ -47,6 +46,7 @@ class EsterilizacionController extends Controller
         return $this->render('create', [
             'model' => $form,
         ]);
+
     }
 
     public function actionUpdate($id)

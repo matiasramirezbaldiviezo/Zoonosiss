@@ -44,7 +44,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             ['label' => 'Animales', 'url' => ['/animal/index']],
             ['label' => 'Dueno', 'url' => ['/propietario/index']],
             ['label' => 'Esterilizacion', 'url' => ['/esterilizacion/index']],
-            ['label' => 'Lista de animales', 'url' => ['/animal/index']],            
+            ['label' => 'Lista de animales', 'url' => ['/animalcopy/index']],            
             ['label' => 'Inventario', 'url' => ['/inventario/index']],
             ['label' => 'Rabia', 'url' => ['/rabia/index']],
             

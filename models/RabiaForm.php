@@ -111,7 +111,7 @@ class RabiaForm extends Model
         //Solo se interactua con RabiaForm y la vista Create
         $rabia->json = json_encode($arrayJson);
         //$rabia->load($this->attributes);
-        return $rabia->create() > 0;
+        return $rabia->create() > 0; 
     }
     
     public function update() : bool{

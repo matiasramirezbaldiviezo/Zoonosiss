@@ -52,8 +52,16 @@ class AnimalForm extends Model
     public function create(): bool
     {
         $this->id_animal = uniqid();
+
         $animal = new Animal();
-        $animal->load($this->attributes);
+
+        $animal->id_animal = $this->id_animal;
+        $animal->nombre_animal = $this->nombre_animal;
+        $animal->genero = $this->genero;
+        $animal->zona_direccion = $this->zona_direccion;
+        $animal->tipo_dueno = $this->tipo_dueno;
+        $animal->edad = $this->edad;
+        $animal->especie = $this->especie;
 
         // Procesar la imagen si se ha cargado
         $uploadedImage = UploadedFile::getInstance($this, 'imagen');
@@ -65,6 +73,8 @@ class AnimalForm extends Model
             // Almacenar la información de la imagen en la base de datos
             $animal->imagen = $imageName;
         }
+
+        
 
         $arrayJson = [ 
             'confinamiento' => $this -> confinamiento,

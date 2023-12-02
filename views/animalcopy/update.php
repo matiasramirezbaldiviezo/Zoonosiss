@@ -4,19 +4,23 @@ use yii\bootstrap5\Html;
 use yii\bootstrap5\ActiveForm;
 
 /** @var \app\models\AnimalForm $model */
-
+// Decodificar el JSON almacenado en el campo 'json' en un array asociativo
+$jsonData = json_decode($model->json, true);
 ?>
 
-<h1>Nuevo Animal</h1>
-<?php $form = ActiveForm::begin() ?>
+<h1>Modificar registro</h1>
+
+<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
 
 <?= $form->field($model, 'nombre_animal')->textInput() ?>
 <?= $form->field($model, 'genero')->dropDownList(['M' => 'Macho', 'F' => 'Hembra']) ?>
 <?= $form->field($model, 'zona_direccion')->textInput() ?>
-<?= $form->field($model, 'tipo_dueno')->dropDownList(['Particular' => 'Particular', 'Refugio' => 'Refugio', 'Representante' => 'Representante']) ?>
+<?= $form->field($model, 'tipo_dueno')->dropDownList(['1' => 'Particular', '2' => 'Refugio', '3' => 'Representante']) ?>
 <?= $form->field($model, 'edad')->textInput() ?>
-<?= $form->field($model, 'especie')->dropDownList(['Perro' => 'Perro', 'Gato' => 'Gato']) ?>
+<?= $form->field($model, 'especie')->textInput() ?>
 <?= $form->field($model, 'imagen')->fileInput() ?> <!-- Nuevo campo para cargar la imagen -->
+
+
 
 <h1>Formulario</h1>
 
@@ -24,52 +28,62 @@ use yii\bootstrap5\ActiveForm;
     ['Sale SIN supervicion' => 'Sale SIN supervicion',
     'Sale CON supervicion' => 'Sale CON supervicion',
     'Amarrado' => 'Amarrado',
-    'No sale del patio' => 'No sale del patio']) ?>
+    'No sale del patio' => 'No sale del patio'],
+    ['value' => $jsonData['confinamiento'] ?? '']) ?>
+
 
 <?= $form->field($model, 'comportamiento')->dropDownList(
     ['Sociable' => 'Sociable',
     'Agresivo' => 'Agresivo',
     'Temeroso' => 'Temeroso',
-    'No sabe' => 'No sabe']) ?>
+    'No sabe' => 'No sabe'],
+    ['value' => $jsonData['comportamiento'] ?? '']) ?>
 
 <?= $form->field($model, 'visito_veterinario')->dropDownList(
     ['Si' => 'Si',
     'No' => 'No',
-    'No Sabe' => 'No Sabe']) ?>
+    'No Sabe' => 'No Sabe'],
+    ['value' => $jsonData['visito_veterinario'] ?? '']
+    ) ?>
 
 <?= $form->field($model, 'vancuna_12meses')->dropDownList(
     ['Si' => 'Si',
     'No' => 'No',
-    'No Sabe' => 'No Sabe']) ?>
+    'No Sabe' => 'No Sabe'],
+    ['value' => $jsonData['vancuna_12meses'] ?? '']) ?>
 
 <?= $form->field($model, 'acceso_vacuna_rabia')->dropDownList(
     ['Campaña gratuita del Gobierno' => 'Campaña gratuita del Gobierno',
-    'Veterinario Local' => 'Veterinario Local']) ?>
+    'Veterinario Local' => 'Veterinario Local'],
+    ['value' => $jsonData['acceso_vacuna_rabia'] ?? '']) ?>
 
 <?= $form->field($model, 'desaparacitado')->dropDownList(
     ['Si' => 'Si',
     'No' => 'No',
-    'No Sabe' => 'No Sabe']) ?>
+    'No Sabe' => 'No Sabe'],
+    ['value' => $jsonData['desaparacitado'] ?? '']) ?>
 
 <?= $form->field($model, 'inyeccion_anticonceptiva')->dropDownList(
     ['Si' => 'Si',
     'No' => 'No',
-    'No Sabe' => 'No Sabe']) ?>
+    'No Sabe' => 'No Sabe'],
+    ['value' => $jsonData['inyeccion_anticonceptiva'] ?? '']) ?>
 
 <?= $form->field($model, 'adquirir_mascota')->dropDownList(
     ['Rescate' => 'Rescate',
     'Adopcion' => 'Adopcion',
     'Comprada' => 'Comprada',
     'Regalo' => 'Regalo',
-    'Nacio en casa' => 'Nacio en casa']) ?>
+    'Nacio en casa' => 'Nacio en casa'],
+    ['value' => $jsonData['adquirir_mascota'] ?? '']) ?>
 
 <?= $form->field($model, 'veces_embarazo')->dropDownList(
-    ['No sabe' => 'No sabe',
-    'Una vez' => 'Una vez',
+    ['Una vez' => 'Una vez',
     'Mas de tres' => 'Mas de tres',
     'Dos a tres' => 'Dos a tres',
-    'Nunca' => 'Nunca'
-    ]) ?>
+    'Nunca' => 'Nunca',
+    'No sabe' => 'No sabe'],
+    ['value' => $jsonData['veces_embarazo'] ?? '']) ?>
 
 <?= $form->field($model, 'camadas')->dropDownList(
     ['Se venden' => 'Se venden',
@@ -78,29 +92,40 @@ use yii\bootstrap5\ActiveForm;
     'Nunca' => 'Nunca',
     'Se sacrifican' => 'Se sacrifican',
     'Muerte Natural' => 'Muerte Natural',
-    'No sabe' => 'No sabe']) ?>
+    'No sabe' => 'No sabe'],
+    ['value' => $jsonData['camadas'] ?? '']) ?>
 
 <?= $form->field($model, 'complexion')->dropDownList(
-    [
+    ['Delgado' => 'Delgado',
     'Normal' => 'Normal',
-    'Delgado' => 'Delgado',
-    'Sobrepeso' => 'Sobrepeso']) ?>
+    'Sobrepeso' => 'Sobrepeso'],
+    ['value' => $jsonData['complexion'] ?? '']) ?>
 
 <?= $form->field($model, 'condicion_piel')->dropDownList(
-    ['Normal' => 'Normal',
-    'Dermatitis' => 'Dermatitis',
+    ['Dermatitis' => 'Dermatitis',
+    'Normal' => 'Normal',
     'Otro' => 'Otro',
-    'Sarna' => 'Sarna']) ?>
+    'Sarna' => 'Sarna'],
+    ['value' => $jsonData['condicion_piel'] ?? '']) ?>
 
 <?= $form->field($model, 'post_operatorio')->dropDownList(
     ['Su hogar' => 'Su hogar',
     'Refugio/alberge' => 'Refugio/alberge',
     'Hogar Temporal' => 'Hogar Temporal',
     'Su comunidad/la calle' => 'Su comunidad/la calle',
-    'Adopcion' => 'Adopcion']) ?>
+    'Adopcion' => 'Adopcion'],
+    ['value' => $jsonData['post_operatorio'] ?? '']) ?>
+
+
+
+
+
+
+    
+
 
 <div>
     <button type="submit" class="btn btn-primary">Enviar</button>
 </div>
 
-<?php $form->end() ?>
+<?php $form->end()?>

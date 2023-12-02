@@ -16,6 +16,8 @@ class EsterilizacionDAO{
             FROM documento_esterilizacion
             ORDER BY id
         ");
+
+        
         return $cmd->queryAll();
 
     }
@@ -117,6 +119,7 @@ class EsterilizacionDAO{
             ':id_animal' => $esterilizacion->id_animal,
 
         ]);
+
         
 
         return $cmd->execute();

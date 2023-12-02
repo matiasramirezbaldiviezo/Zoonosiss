@@ -8,29 +8,28 @@ class Esterilizacion{
 
     public string $id = '';
     public string $tatuaje= '';
-    public string $fecha_esterilizacion='';
+
     public string $datatype='';
     public string $id_dueno='';
     public string $id_animal='';
-    public string $nombre='';
+    
+    public ? string $nombre = null;
+    public ? string $id_estein = null;
+    public ? string $cantidad = null;
+    public ?string $id_inventario = null;
 
-    public string $id_estein='';
-    public string $cantidad='';
-    public string $id_inventario='';
 
     
-    
 
-
-    public function load(array $attributes) : static
-    {
-        foreach($attributes as $key => $value){
+    public function load(array $attributes): static
+{
+    foreach ($attributes as $key => $value) {
+        if (property_exists($this, $key)) {
             $this->{$key} = $value;
         }
-        return $this;
-        
-
     }
+    return $this;
+}
 
     public function getProductos(): array
     { 
@@ -53,6 +52,7 @@ class Esterilizacion{
     return DAOFactory::getEsterilizacionDAO()->getProductosEsterilizacion($this->id, $this->id_inventario);
 
     }
+    
 
     
 
@@ -92,6 +92,7 @@ class Esterilizacion{
     public function delete() : int {
         return DAOFactory::getEsterilizacionDAO()->delete($this);
     }  
+    
     public function deleteproducto() : int {
         return DAOFactory::getEsterilizacionDAO()->deleteproducto($this);
     }  

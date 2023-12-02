@@ -5,29 +5,32 @@ namespace app\models;
 use yii\base\Model;
 use app\models\domain\entity\Esterilizacion;
 
+
 class EsterilizacionForm extends Model
 {
     public $id;
     public $tatuaje;
-    public $fecha_esterilizacion;
     public $datatype;
     public $id_dueno;
     public $id_animal;
-    
     public $id_stein;
     public $id_inventario;
     public $nombre;
     public $cantidad;
-    
+    public $fecha_esterilizacion;
+
     public function rules()
     {
         return [
             ['id', 'safe'],
             ['tatuaje', 'string' , 'min' => 3],
-            ['fecha_esterilizacion', 'date'],
             ['datatype', 'safe'],
             ['id_dueno', 'string'],
+            ['id_inventario', 'safe'],
+            ['nombre', 'safe'],
+            ['cantidad', 'safe'],
             ['id_animal', 'string'],
+            
             
         ];
     }
@@ -36,7 +39,8 @@ class EsterilizacionForm extends Model
         $this->id = uniqid();
         
         $esterilizacion = new Esterilizacion();
-        $esterilizacion->load($this->attributes);        
+        $esterilizacion->id_inventario = $this->id_inventario ?? ''; // Proporcionar un valor predeterminado si $id_inventario es nulo
+        $esterilizacion->load($this->attributes); 
         return $esterilizacion->create() > 0;
     }
 
